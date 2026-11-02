@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promotional Posts</title>
+<style>
+  :root {
+    --ink: #0f172a;
+    --paper: #fffaf0;
+    --pink: #ff3d81;
+    --orange: #ff9a3d;
+    --violet: #6d28d9;
+    --blue: #2563eb;
+    --mint: #34d399;
+    --yellow: #fde047;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #e5e7eb;
+    color: var(--ink);
+    padding: 32px 16px 64px;
+  }
+  h1 { text-align: center; font-size: 1.6rem; }
+  .sub { text-align: center; color: #475569; margin: 6px 0 32px; }
+  .gallery {
+    display: flex; flex-wrap: wrap; gap: 32px;
+    justify-content: center; align-items: flex-start;
+  }
+  figure { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  figcaption { font-size: .85rem; color: #475569; }
+
+  /* Shared post base */
+  .post {
+    position: relative; overflow: hidden; border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(15,23,42,.25);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 40px;
+  }
+  .tag {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .btn {
+    display: inline-block; padding: 14px 28px; border-radius: 999px;
+    font-weight: 800; font-size: 16px; text-decoration: none;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(2px); }
+
+  /* 1. Sale — square 1080x1080 scaled to 480 */
+  .sale {
+    width: 480px; height: 480px; color: #fff;
+    background: linear-gradient(135deg, var(--pink), var(--orange));
+  }
+  .sale .blob.a { width: 300px; height: 300px; right: -90px; top: -90px; background: rgba(255,255,255,.18); }
+  .sale .blob.b { width: 200px; height: 200px; left: -60px; bottom: -60px; background: rgba(255,255,255,.14); }
+  .sale .tag { background: #fff; color: var(--pink); align-self: flex-start; }
+  .sale .big { font-size: 120px; font-weight: 900; line-height: .9; letter-spacing: -.04em; }
+  .sale .big small { font-size: 40px; font-weight: 800; letter-spacing: 0; }
+  .sale p { font-size: 20px; font-weight: 600; margin-top: 10px; }
+  .sale .btn { background: var(--ink); color: #fff; align-self: flex-start; }
+  .sale > * { position: relative; }
+
+  /* 2. App launch — story 9:16 */
+  .story {
+    width: 300px; height: 533px; color: #fff; padding: 32px 26px;
+    background: radial-gradient(circle at 80% 10%, #8b5cf6, transparent 50%),
+                linear-gradient(160deg, #1e1b4b, var(--violet));
+    text-align: center; align-items: center;
+  }
+  .story .tag { background: rgba(255,255,255,.15); color: var(--yellow); }
+  .story h2 { font-size: 40px; line-height: 1.05; font-weight: 900; margin-top: 14px; }
+  .story h2 span { color: var(--yellow); }
+  .phone {
+    width: 170px; height: 250px; border-radius: 26px; background: #0b0a24;
+    border: 5px solid #fff; padding: 12px; display: flex; flex-direction: column; gap: 8px;
+    transform: rotate(-6deg); box-shadow: 0 16px 30px rgba(0,0,0,.4);
+  }
+  .phone i { display: block; border-radius: 10px; background: linear-gradient(90deg, var(--mint), var(--blue)); height: 46px; }
+  .phone i:nth-child(2) { background: linear-gradient(90deg, var(--pink), var(--orange)); height: 70px; }
+  .phone i:nth-child(3) { background: rgba(255,255,255,.15); height: 30px; }
+  .phone i:nth-child(4) { background: var(--yellow); height: 34px; width: 60%; }
+  .story .btn { background: var(--yellow); color: var(--ink); width: 100%; }
+
+  /* 3. Webinar — wide banner */
+  .banner {
+    width: 760px; height: 300px; flex-direction: row; align-items: center; gap: 24px;
+    background: var(--paper); border: 4px solid var(--ink);
+  }
+  .banner .left { flex: 1; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .banner .tag { background: var(--blue); color: #fff; }
+  .banner h2 { font-size: 40px; line-height: 1.05; font-weight: 900; letter-spacing: -.02em; }
+  .banner h2 mark { background: var(--yellow); padding: 0 6px; }
+  .banner .btn { background: var(--ink); color: #fff; }
+  .date {
+    width: 150px; height: 170px; border: 4px solid var(--ink); border-radius: 18px; background: #fff;
+    text-align: center; overflow: hidden; box-shadow: 8px 8px 0 var(--ink); flex: none;
+  }
+  .date b { display: block; background: var(--pink); color: #fff; padding: 8px; letter-spacing: .15em; }
+  .date strong { display: block; font-size: 72px; font-weight: 900; line-height: 1.1; }
+  .date span { font-weight: 700; color: #475569; }
+
+  /* 4. Product card */
+  .product {
+    width: 360px; height: 480px; background: #0f172a; color: #fff; padding: 28px;
+    background-image: radial-gradient(circle at 50% 30%, #1d4ed8 0, transparent 60%);
+  }
+  .product .tag { background: var(--mint); color: var(--ink); align-self: flex-start; }
+  .bottle {
+    width: 110px; height: 190px; margin: 0 auto; border-radius: 30px 30px 18px 18px; position: relative;
+    background: linear-gradient(90deg, #fff, #cbd5e1); box-shadow: 0 30px 40px rgba(0,0,0,.45);
+  }
+  .bottle::before { content: ""; position: absolute; left: 50%; top: -26px; width: 44px; height: 30px; background: #94a3b8; border-radius: 8px 8px 0 0; transform: translateX(-50%); }
+  .bottle::after { content: "PURE"; position: absolute; inset: 70px 0 auto; text-align: center; font-weight: 900; letter-spacing: .15em; color: var(--blue); }
+  .product h2 { font-size: 30px; font-weight: 900; }
+  .price { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+  .price b { font-size: 36px; color: var(--yellow); }
+  .price s { color: #94a3b8; }
+  .product .btn { background: #fff; color: var(--ink); text-align: center; width: 100%; }
+</style>
+</head>
+<body>
+  <h1>Promotional Posts</h1>
+  <p class="sub">Four ready-to-screenshot designs in pure HTML &amp; CSS. Edit the text and colours to match your brand.</p>
+
+  <main class="gallery">
+    <figure>
+      <div class="post sale">
+        <div class="blob a"></div><div class="blob b"></div>
+        <span class="tag">Flash Sale</span>
+        <div>
+          <div class="big">50<small>% OFF</small></div>
+          <p>Everything. 48 hours only.</p>
+        </div>
+        <a class="btn" href="#">Shop now →</a>
+      </div>
+      <figcaption>Square post · 1:1</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post story">
+        <span class="tag">New release</span>
+        <h2>Meet the app that <span>does it all.</span></h2>
+        <div class="phone"><i></i><i></i><i></i><i></i></div>
+        <a class="btn" href="#">Download free</a>
+      </div>
+      <figcaption>Story · 9:16</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post banner">
+        <div class="left">
+          <span class="tag">Free webinar</span>
+          <h2>Grow your reach <mark>3× faster</mark></h2>
+          <a class="btn" href="#">Reserve my seat</a>
+        </div>
+        <div class="date"><b>NOV</b><strong>18</strong><span>10:00 AM</span></div>
+      </div>
+      <figcaption>Banner · 5:2</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post product">
+        <span class="tag">Best seller</span>
+        <div class="bottle"></div>
+        <div>
+          <h2>Pure Water Bottle</h2>
+          <div class="price"><b>$24</b><s>$39</s></div>
+          <a class="btn" href="#">Add to cart</a>
+        </div>
+      </div>
+      <figcaption>Product card · 3:4</figcaption>
+    </figure>
+  </main>
+</body>
+</html>
