@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ezdu.net Promotional Posts</title>
+<style>
+  :root {
+    --navy: #0b1b3a;
+    --indigo: #4f46e5;
+    --sky: #38bdf8;
+    --teal: #14b8a6;
+    --amber: #fbbf24;
+    --coral: #fb7185;
+    --cream: #f8fafc;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #e2e8f0; color: var(--navy); padding: 32px 16px 64px;
+  }
+  h1 { text-align: center; font-size: 1.6rem; }
+  .sub { text-align: center; color: #475569; margin: 6px 0 32px; }
+  .gallery { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; align-items: flex-start; }
+  figure { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  figcaption { font-size: .85rem; color: #475569; }
+
+  .post {
+    position: relative; overflow: hidden; border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(11,27,58,.25);
+    display: flex; flex-direction: column; justify-content: space-between; padding: 36px;
+  }
+  .post > * { position: relative; }
+  .logo { font-weight: 900; font-size: 24px; letter-spacing: -.03em; }
+  .logo i { font-style: normal; color: var(--amber); }
+  .tag { display: inline-block; padding: 6px 14px; border-radius: 999px; font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  .btn { display: inline-block; padding: 14px 26px; border-radius: 999px; font-weight: 800; font-size: 16px; text-decoration: none; text-align: center; }
+  .url { font-weight: 700; font-size: 14px; opacity: .85; }
+  .blob { position: absolute !important; border-radius: 50%; }
+
+  /* 1. Enrollment — square */
+  .enroll {
+    width: 480px; height: 480px; color: #fff;
+    background: linear-gradient(145deg, var(--navy), var(--indigo));
+  }
+  .enroll .blob.a { width: 280px; height: 280px; right: -80px; bottom: -80px; background: rgba(56,189,248,.35); }
+  .enroll .blob.b { width: 120px; height: 120px; right: 60px; top: 40px; background: rgba(251,191,36,.9); }
+  .enroll h2 { font-size: 52px; line-height: 1; font-weight: 900; letter-spacing: -.03em; margin: 14px 0; }
+  .enroll h2 span { color: var(--amber); }
+  .enroll p { font-size: 18px; max-width: 300px; opacity: .9; }
+  .enroll .tag { background: var(--amber); color: var(--navy); }
+  .enroll .btn { background: #fff; color: var(--navy); align-self: flex-start; }
+
+  /* 2. Course discount — story */
+  .course {
+    width: 300px; height: 533px; color: #fff; padding: 28px 24px; text-align: center; align-items: center;
+    background: linear-gradient(170deg, var(--teal), #0f766e 60%, var(--navy));
+  }
+  .course .tag { background: rgba(255,255,255,.18); }
+  .course .off { font-size: 96px; font-weight: 900; line-height: .9; letter-spacing: -.05em; }
+  .course .off small { display: block; font-size: 28px; letter-spacing: 0; }
+  .course ul { list-style: none; padding: 0; display: grid; gap: 8px; text-align: left; font-weight: 700; font-size: 15px; }
+  .course li::before { content: "✓"; display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 50%; background: var(--amber); color: var(--navy); margin-right: 10px; font-size: 13px; }
+  .course .btn { background: var(--amber); color: var(--navy); width: 100%; }
+
+  /* 3. Webinar — banner */
+  .banner {
+    width: 760px; height: 300px; flex-direction: row; align-items: center; gap: 24px;
+    background: var(--cream); border: 4px solid var(--navy);
+  }
+  .banner .left { flex: 1; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .banner .tag { background: var(--coral); color: #fff; }
+  .banner h2 { font-size: 38px; line-height: 1.05; font-weight: 900; letter-spacing: -.02em; }
+  .banner h2 mark { background: var(--amber); padding: 0 6px; }
+  .banner .btn { background: var(--indigo); color: #fff; }
+  .date { width: 150px; height: 170px; flex: none; border: 4px solid var(--navy); border-radius: 18px; background: #fff; text-align: center; overflow: hidden; box-shadow: 8px 8px 0 var(--navy); }
+  .date b { display: block; background: var(--indigo); color: #fff; padding: 8px; letter-spacing: .15em; }
+  .date strong { display: block; font-size: 72px; font-weight: 900; line-height: 1.1; }
+  .date span { font-weight: 700; color: #475569; }
+
+  /* 4. Testimonial */
+  .quote {
+    width: 400px; height: 400px; background: var(--amber); color: var(--navy);
+  }
+  .quote .mark { font-size: 100px; line-height: .6; font-weight: 900; color: var(--indigo); }
+  .quote blockquote { font-size: 24px; font-weight: 800; line-height: 1.25; }
+  .quote .who { display: flex; align-items: center; gap: 12px; }
+  .quote .av { width: 48px; height: 48px; border-radius: 50%; background: var(--indigo); color: #fff; display: grid; place-items: center; font-weight: 900; }
+  .quote .who small { display: block; opacity: .7; }
+  .stars { color: var(--navy); letter-spacing: 3px; }
+
+  /* 5. Free trial — portrait */
+  .trial {
+    width: 360px; height: 480px; color: #fff;
+    background: radial-gradient(circle at 20% 0%, #818cf8, transparent 55%), var(--navy);
+  }
+  .trial h2 { font-size: 40px; font-weight: 900; line-height: 1.05; letter-spacing: -.02em; margin-top: 12px; }
+  .trial h2 span { color: var(--sky); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.12); font-weight: 700; font-size: 14px; }
+  .trial .btn { background: var(--sky); color: var(--navy); }
+</style>
+</head>
+<body>
+  <h1>ezdu.net — Promotional Posts</h1>
+  <p class="sub">Five ready-to-screenshot designs in pure HTML &amp; CSS. Edit text and colours to match the brand.</p>
+
+  <main class="gallery">
+    <figure>
+      <div class="post enroll">
+        <div class="blob a"></div><div class="blob b"></div>
+        <div class="logo">ez<i>du</i>.net</div>
+        <div>
+          <span class="tag">Admissions open</span>
+          <h2>Learn smarter.<br><span>Start today.</span></h2>
+          <p>Live classes, expert mentors and courses built for you.</p>
+        </div>
+        <a class="btn" href="#">Enroll now → ezdu.net</a>
+      </div>
+      <figcaption>Square post · 1:1</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post course">
+        <div class="logo">ez<i>du</i>.net</div>
+        <div>
+          <span class="tag">Limited offer</span>
+          <div class="off">40%<small>OFF ALL COURSES</small></div>
+        </div>
+        <ul><li>Lifetime access</li><li>Certificate included</li><li>Learn at your pace</li></ul>
+        <a class="btn" href="#">Claim discount</a>
+      </div>
+      <figcaption>Story · 9:16</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post banner">
+        <div class="left">
+          <div class="logo">ez<i style="color:var(--indigo)">du</i>.net</div>
+          <span class="tag">Free live class</span>
+          <h2>Master your skills <mark>in 30 days</mark></h2>
+          <a class="btn" href="#">Reserve my seat</a>
+        </div>
+        <div class="date"><b>NOV</b><strong>25</strong><span>8:00 PM</span></div>
+      </div>
+      <figcaption>Banner · 5:2</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post quote">
+        <div class="mark">“</div>
+        <blockquote>I went from zero to job-ready in three months. The mentors made all the difference.</blockquote>
+        <div class="who">
+          <div class="av">AR</div>
+          <div><b>Aisha R.</b><small>ezdu.net student</small></div>
+          <div class="stars" style="margin-left:auto">★★★★★</div>
+        </div>
+      </div>
+      <figcaption>Testimonial · 1:1</figcaption>
+    </figure>
+
+    <figure>
+      <div class="post trial">
+        <div class="logo">ez<i>du</i>.net</div>
+        <div>
+          <span class="tag" style="background:var(--coral)">7-day free trial</span>
+          <h2>Your next skill is <span>one click away.</span></h2>
+        </div>
+        <div class="chips"><span>Coding</span><span>Design</span><span>Languages</span><span>Business</span></div>
+        <a class="btn" href="#">Try free at ezdu.net</a>
+      </div>
+      <figcaption>Portrait · 3:4</figcaption>
+    </figure>
+  </main>
+</body>
+</html>
